@@ -1,0 +1,71 @@
+<div class="auth-page">
+
+  <div class="auth-card">
+
+    <h3 class="text-center mb-4">🏨 Create Account</h3>
+
+    <form [formGroup]="form" (ngSubmit)="register()">
+
+      <!-- Name -->
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter your name"
+          formControlName="name"
+        />
+
+        <small *ngIf="form.get('name')?.invalid && form.get('name')?.touched"
+               class="text-danger">
+          Name is required
+        </small>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter your email"
+          formControlName="email"
+        />
+
+        <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+               class="text-danger">
+          Invalid email
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Enter password"
+          formControlName="password"
+        />
+
+        <small *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+               class="text-danger">
+          Password must be at least 6 chars
+        </small>
+      </div>
+
+      <!-- Button -->
+      <button class="btn btn-success w-100 mt-2">
+        Register
+      </button>
+
+      <p class="text-center mt-3">
+        Already have account?
+        <a routerLink="/login">Login</a>
+      </p>
+
+    </form>
+
+  </div>
+
+</div>

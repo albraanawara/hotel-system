@@ -1,0 +1,52 @@
+<div class="container mt-4">
+
+  <h2 class="mb-3">Rooms</h2>
+
+  <!-- 🔍 Search -->
+  <input
+    type="text"
+    class="form-control mb-3"
+    placeholder="Search rooms..."
+    [(ngModel)]="search"
+    (input)="onSearch()"
+  />
+
+  <!-- 🏨 Rooms -->
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let room of rooms">
+      <div class="card shadow p-3 h-100">
+      <div *ngFor="let img of room.images">
+        <img [src]="'http://localhost:5000/' + img" width="100" />
+      </div>
+        <h5>{{ room.name }}</h5>
+        <p>Price: {{ room.price }}</p>
+        <p>Type: {{ room.type }}</p>
+
+        <span
+          class="badge mb-2"
+          [ngClass]="room.available ? 'bg-success' : 'bg-danger'"
+        >
+          {{ room.available ? 'Available' : 'Booked' }}
+        </span>
+          <input type="date" [(ngModel)]="fromDate" class="form-control mb-2">
+
+          <input type="date" [(ngModel)]="toDate" class="form-control mb-2">
+       <button
+  class="btn btn-primary"
+  [disabled]="!room.available"
+  (click)="bookRoom(room._id)">
+
+  {{ room.available ? 'Book Now' : 'Booked' }}
+</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 📄 Pagination -->
+  <div class="d-flex justify-content-between mt-3">
+    <button class="btn btn-secondary" (click)="prevPage()">Prev</button>
+    <button class="btn btn-secondary" (click)="nextPage()">Next</button>
+  </div>
+
+</div>

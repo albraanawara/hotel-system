@@ -1,0 +1,113 @@
+<div class="container mt-4">
+
+  <h2>👑 Admin Dashboard</h2>
+
+  <!-- ➕ Add Room -->
+  <a routerLink="/admin/add-room" class="btn btn-primary mb-3">
+    Add Room
+  </a>
+
+  <hr>
+
+  <!-- 🏨 ROOMS -->
+  <h4 class="mb-3">Rooms</h4>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let room of rooms">
+
+      <div class="card shadow-sm mb-3">
+
+        <!-- 🖼️ Room Image -->
+        <img
+          *ngIf="room.images?.length"
+          [src]="'http://localhost:5000/' + room.images[0]"
+          class="card-img-top"
+          height="180"
+          style="object-fit: cover;"
+        />
+
+        <div class="card-body">
+          <h5>{{ room.name }}</h5>
+          <p>{{ room.price }} EGP / night</p>
+
+          <span class="badge"
+                [ngClass]="room.available ? 'bg-success' : 'bg-danger'">
+            {{ room.available ? 'Available' : 'Booked' }}
+          </span>
+
+          <div class="mt-2">
+            <button class="btn btn-warning btn-sm me-2"
+        [routerLink]="['/admin/edit-room', room._id]">
+  Edit
+</button>
+
+<button class="btn btn-danger btn-sm"
+        (click)="deleteRoom(room._id)">
+  Delete
+</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 📊 BOOKINGS -->
+  <h4 class="mb-3">Bookings</h4>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+
+      <thead class="table-dark">
+  <tr>
+    <th>User</th>
+    <th>Room</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Total Price</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+</thead>
+      <tbody>
+  <tr *ngFor="let b of bookings">
+
+    <td>{{ b.user?.email }}</td>
+    <td>{{ b.room?.name }}</td>
+
+    <td>{{ b.fromDate | date }}</td>
+    <td>{{ b.toDate | date }}</td>
+
+    <td>{{ b.totalPrice }} EGP</td>
+
+    <td>
+      <span class="badge"
+            [ngClass]="b.status === 'active' ? 'bg-success' : 'bg-danger'">
+        {{ b.status }}
+      </span>
+    </td>
+
+    <!-- ❗ لازم يكون داخل TD -->
+    <td>
+      <button class="btn btn-danger btn-sm"
+              (click)="cancelBooking(b._id)">
+        Cancel
+      </button>
+
+
+  <button class="btn btn-danger btn-sm"
+          (click)="deleteBooking(b._id)">
+    Delete
+  </button>
+
+  </td>
+  </tr>
+</tbody>
+
+    </table>
+  </div>
+
+</div>

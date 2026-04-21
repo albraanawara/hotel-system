@@ -1,0 +1,37 @@
+<div class="container mt-4" style="max-width: 500px;">
+
+  <h3 class="mb-3">➕ Add Room</h3>
+
+  <form [formGroup]="form" (ngSubmit)="addRoom()">
+
+    <!-- Name -->
+    <input class="form-control mb-2"
+           placeholder="Room Name"
+           formControlName="name">
+    <input type="file" (change)="onFileSelect($event)" multiple />
+    <!-- Price -->
+    <input class="form-control mb-2"
+           type="number"
+           placeholder="Price"
+           formControlName="price">
+
+    <!-- Type -->
+    <input class="form-control mb-2"
+           placeholder="Type (Single / Double)"
+           formControlName="type">
+
+    <!-- Available -->
+    <div class="form-check mb-3">
+      <input type="checkbox"
+             class="form-check-input"
+             formControlName="available">
+      <label class="form-check-label">Available</label>
+    </div>
+
+    <button class="btn btn-success w-100" [disabled]="form.invalid">
+      Add Room
+    </button>
+
+  </form>
+
+</div>

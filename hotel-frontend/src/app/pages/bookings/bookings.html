@@ -1,0 +1,28 @@
+<div class="container mt-4">
+
+  <h2 class="mb-3">My Bookings</h2>
+
+  <div *ngIf="bookings.length === 0" class="alert alert-info">
+    No bookings yet
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let b of bookings">
+
+      <div class="card shadow p-3">
+
+        <h5>{{ b.room?.name }}</h5>
+
+        <p> Price: {{ b.room?.price }}</p>
+        <p> Type: {{ b.room?.type }}</p>
+
+        <span class="badge bg-primary">
+          Booked on: {{ b.date | date:'short' }}
+        </span>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

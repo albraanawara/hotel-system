@@ -1,0 +1,31 @@
+<div class="container mt-4" style="max-width: 500px;">
+
+  <h3 class="mb-3 text-center">Edit Room</h3>
+
+  <form [formGroup]="form" (ngSubmit)="updateRoom()">
+
+    <input class="form-control mb-2"
+           placeholder="Room Name"
+           formControlName="name">
+
+    <input class="form-control mb-2"
+           placeholder="Price"
+           type="number"
+           formControlName="price">
+
+    <input class="form-control mb-2"
+           placeholder="Type"
+           formControlName="type">
+
+    <select class="form-control mb-2" formControlName="available">
+      <option [value]="true">Available</option>
+      <option [value]="false">Booked</option>
+    </select>
+
+    <button class="btn btn-primary w-100">
+      Update Room
+    </button>
+
+  </form>
+
+</div>
